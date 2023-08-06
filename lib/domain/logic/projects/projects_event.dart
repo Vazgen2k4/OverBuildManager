@@ -9,4 +9,7 @@ sealed class ProjectsEvent extends Equatable {
 
 class ProjectsToLoadEvent extends ProjectsEvent {
   const ProjectsToLoadEvent();
+  
+  @override
+  List<Object> get props => [];  
 }

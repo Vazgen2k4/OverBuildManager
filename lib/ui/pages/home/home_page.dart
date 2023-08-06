@@ -1,4 +1,4 @@
-import 'package:build_manager/domain/api/firebase_api.dart';
+
 import 'package:build_manager/domain/logic/auth/auth_bloc.dart';
 import 'package:build_manager/domain/logic/projects/projects_bloc.dart';
 import 'package:build_manager/ui/router/app_routes.dart';
@@ -11,8 +11,21 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text('Главная страница'),
+      body: BlocBuilder<ProjectsBloc, ProjectsState>(
+        builder: (context, state) {
+          if (state is! ProjectsLoaded) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          final name = state.user.name ?? '<Error>';
+
+          return Center(
+            child: Text('$name, Добро пожаловать'),
+          );
+        },
+    
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Row(
@@ -26,7 +39,7 @@ class HomePage extends StatelessWidget {
               authBloc.add(const AuthLogOutEvent());
 
               Navigator.of(context).pushNamedAndRemoveUntil(
-                AppRoutes.start,
+                AppRoutes.auth,
                 (_) => false,
               );
             },

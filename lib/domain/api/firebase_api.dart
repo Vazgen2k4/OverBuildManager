@@ -37,5 +37,5 @@ abstract final class FirebaseApi {
 }
 
 abstract final class AppCollection {
-  static const users = 'users';
+  static const users = '/users';
 }

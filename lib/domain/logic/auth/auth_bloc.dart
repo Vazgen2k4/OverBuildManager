@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:build_manager/domain/api/firebase_api.dart';
+import 'package:build_manager/domain/models/over_user/over_user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -64,6 +66,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       await _auth.signInWithCredential(googleCerdential);
 
+      final uid = _auth.currentUser?.uid;
+      if (uid != null) {
+        final user = await FirebaseApi.getUser(uid);
+
+        if (user == null || !user.haveFullData) {
+          final email = _auth.currentUser?.email;
+          final name = _auth.currentUser?.displayName;
+          final newUser = OverUser(
+            email: email,
+            name: name,
+          );
+
+          await FirebaseApi.setUser(
+            uid,
+            user: newUser,
+          );
+        }
+      }
+
       emit(state.copyWith(hasAuth: true));
     } catch (e) {
       if (kDebugMode) {
@@ -87,9 +108,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       await _gooleSignIn.signOut();
       await _auth.signOut();
-      
+
       emit(state.copyWith(hasAuth: false));
-      
     } catch (e) {
       if (kDebugMode) {
         print(e);

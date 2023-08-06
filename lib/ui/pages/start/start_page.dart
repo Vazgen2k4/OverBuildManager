@@ -13,6 +13,7 @@ class StartPage extends StatelessWidget {
         if (state is! AuthLoaded) return;
 
         final nextRouteName = state.hasAuth ? AppRoutes.home : AppRoutes.auth;
+        
         Navigator.of(context).pushNamedAndRemoveUntil(
           nextRouteName,
           (route) => false,

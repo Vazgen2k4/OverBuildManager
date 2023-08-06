@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthBloc()..add(const AuthLoading()),
         ),
         BlocProvider<ProjectsBloc>(
-          create: (context) => ProjectsBloc()..add(const ProjectsToLoadEvent()),
+          create: (context) {
+            print(123123123123);
+            
+            return ProjectsBloc()..add(const ProjectsToLoadEvent());
+          },
         ),
       ],
       child: const MyAppSetting(),

@@ -5,6 +5,7 @@ final class OverUser extends Equatable {
   final String? name;
   final String? email;
   final List<Client>? clients;
+  bool get haveFullData => name != null && email != null;
 
   const OverUser({this.name, this.email, this.clients});
 
@@ -26,7 +27,7 @@ final class OverUser extends Equatable {
       email: email,
     );
   }
-
+  
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['name'] = name;
@@ -36,7 +37,8 @@ final class OverUser extends Equatable {
     }
     return data;
   }
-
+  
+  
   OverUser copyWith({
     String? name,
     String? email,

@@ -17,4 +17,8 @@ final class ProjectsLoaded extends ProjectsState {
   ProjectsLoaded copyWith({OverUser? user}) {
     return ProjectsLoaded(user: user ?? this.user);
   }
+  
+  @override
+  List<Object> get props => [user];
+  
 }
