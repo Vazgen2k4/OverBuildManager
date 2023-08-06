@@ -5,10 +5,6 @@ abstract class AppColorTheme {
   static final darkTheme = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: AppColors.background,
     useMaterial3: true,
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      shape: CircleBorder(),
-      backgroundColor: AppColors.akcent,
-    ),
     textTheme: const TextTheme(
       titleMedium: TextStyle(
         color: AppColors.text,

@@ -1,3 +1,4 @@
+import 'package:build_manager/domain/logic/projects/projects_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:build_manager/domain/logic/auth/auth_bloc.dart';
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(
           create: (context) => AuthBloc()..add(const AuthLoading()),
         ),
+        BlocProvider<ProjectsBloc>(
+          create: (context) => ProjectsBloc()..add(const ProjectsToLoadEvent()),
+        ),
       ],
       child: const MyAppSetting(),
     );
@@ -30,7 +34,6 @@ class MyAppSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -1,14 +1,21 @@
 {
-    "lists": [{
-        "Categories": [{
-            "Expenses": [{
-                "date": 1668923817,
-                "descr": "Купил мак",
-                "price": 120
-            }],
-            "name": "еда"
-        }],
-        "name": "Лист - 1"
-    }],
-    "table_id": "fdsfsdfsdf"
+    "name": "Vazgen",
+    "email": "dfsdfsdf",
+    "Clients": [
+        {
+            "name": "Zafar",
+            "blocks": [
+                {
+                    "name": "Гостинная",
+                    "categories": [
+                        {
+                            "name": "полы",
+                            "price_of_meter": 15,
+                            "square": 43.44
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

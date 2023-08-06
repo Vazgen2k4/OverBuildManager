@@ -23,7 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLoading event,
     Emitter<AuthState> emit,
   ) async {
-    final hasAuth = FirebaseAuth.instance.currentUser != null;
+    final hasAuth = _auth.currentUser != null;
 
     if (kDebugMode) {
       print('Авторизация: ${hasAuth ? 'Есть БраТишкА)))' : 'Её нетУ Брат'}');
@@ -62,7 +62,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         accessToken: googleUserInfo.accessToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(googleCerdential);
+      await _auth.signInWithCredential(googleCerdential);
 
       emit(state.copyWith(hasAuth: true));
     } catch (e) {
@@ -86,6 +86,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     try {
       await _gooleSignIn.signOut();
+      await _auth.signOut();
+      
       emit(state.copyWith(hasAuth: false));
       
     } catch (e) {
