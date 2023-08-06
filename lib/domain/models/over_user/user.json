@@ -1,0 +1,14 @@
+{
+    "lists": [{
+        "Categories": [{
+            "Expenses": [{
+                "date": 1668923817,
+                "descr": "Купил мак",
+                "price": 120
+            }],
+            "name": "еда"
+        }],
+        "name": "Лист - 1"
+    }],
+    "table_id": "fdsfsdfsdf"
+}
